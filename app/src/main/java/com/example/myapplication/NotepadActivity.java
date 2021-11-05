@@ -37,10 +37,10 @@ public class NotepadActivity extends AppCompatActivity {
             }
         }
 
-        Intent intent = new Intent();
-        intent.putExtra("Title",title);
-        setResult(RESULT_OK,intent);
-        finish();
+        //Intent intent = new Intent();
+        //intent.putExtra("Title",title);
+        //setResult(RESULT_OK,intent);
+        //finish();
 
     }
 }

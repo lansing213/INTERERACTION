@@ -28,8 +28,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 content.setText("yyy");
-                Intent intent = new Intent(MainActivity.this, NotepadActivity.class);
+                Intent intent = new Intent(MainActivity.this,NotepadActivity.class);
                 startActivity(intent);
+                //Intent intent = new Intent(MainActivity.this, NotepadActivity.class);
+                //startActivity(intent);
             }
         });
         creator.setOnClickListener(new View.OnClickListener() {

@@ -7,8 +7,8 @@
 
     <EditText
         android:id="@+id/content"
-        android:layout_width="417dp"
-        android:layout_height="377dp"
+        android:layout_width="411dp"
+        android:layout_height="727dp"
         android:ems="10"
         android:gravity="start|top"
         android:inputType="textMultiLine"
