@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
                 newTextView.setText("yyy");
                 linearLayout.addView(newTextView);
                 Intent intent = new Intent(MainActivity.this,NotepadActivity.class);
-
+                intent.putExtra("titleName",newTextView.getText().toString());
 
                 startActivityForResult(intent,1);
 
@@ -59,11 +59,14 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+
         if(resultCode == 1){
+            content.setText("iiiiiiiiiiiiiiiii");
             if(resultCode == RESULT_OK){
                 String title = data.getStringExtra("Title");
 
                 content.setText(title);
+
 
             }
             else{
@@ -71,5 +74,6 @@ public class MainActivity extends AppCompatActivity {
 
             }
         }
+
     }
 }

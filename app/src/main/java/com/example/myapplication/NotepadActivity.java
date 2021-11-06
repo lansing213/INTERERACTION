@@ -25,28 +25,29 @@ public class NotepadActivity extends AppCompatActivity {
 
 
 
-        String currentContext = editText.getText().toString();
+        String currentContext = contentString;
         String title;
         if(currentContext.matches("")){
             currentContext = "                         ";
             title = "";
         }
         else{
-            title = currentContext;
-            if(title.length() > 6){
+            if(currentContext.length() > 6){
                 title = currentContext.substring(0,6) + "......";
             }
-            else if(title.length() == 6){
+            else if(currentContext.length() == 6){
                 title = currentContext.substring(0,6);}
             else{
                 title = currentContext;
             }
         }
 
-        Intent Backintent = new Intent();
+        Intent BackIntent = new Intent();
         intent.putExtra("Title",title);
-        setResult(RESULT_OK,Backintent);
-        //finish();
+        setResult(RESULT_OK,BackIntent);
+        //editText.setText("ooooooooooooooooooooo");
+
+
 
     }
 }
