@@ -15,10 +15,16 @@ public class NotepadActivity extends AppCompatActivity {
         setContentView(R.layout.activity_notepad);
         getSupportActionBar().setTitle("Notepad");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Intent intent = getIntent();
+        String contentString = intent.getStringExtra("titleName");
 
 
 
         EditText editText = findViewById(R.id.content);
+        editText.setText(contentString);
+
+
+
         String currentContext = editText.getText().toString();
         String title;
         if(currentContext.matches("")){
@@ -37,9 +43,9 @@ public class NotepadActivity extends AppCompatActivity {
             }
         }
 
-        Intent intent = new Intent();
+        Intent Backintent = new Intent();
         intent.putExtra("Title",title);
-        setResult(RESULT_OK,intent);
+        setResult(RESULT_OK,Backintent);
         //finish();
 
     }

@@ -29,10 +29,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 content.setText("yyy");
+                String contentString = content.getText().toString();
                 Intent intent = new Intent(MainActivity.this,NotepadActivity.class);
-                startActivity(intent);
-                //Intent intent = new Intent(MainActivity.this, NotepadActivity.class);
-                //startActivity(intent);
+                intent.putExtra("titleName",contentString);
+                startActivityForResult(intent,1);
+
             }
         });
         creator.setOnClickListener(new View.OnClickListener() {
@@ -61,6 +62,7 @@ public class MainActivity extends AppCompatActivity {
         if(resultCode == 1){
             if(resultCode == RESULT_OK){
                 String title = data.getStringExtra("Title");
+
                 content.setText(title);
 
             }
