@@ -13,8 +13,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
-
-
+    private TextView content;
+    private Button creator;
+    private LinearLayout linearLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,12 +42,32 @@ public class MainActivity extends AppCompatActivity {
                 newTextView.setText("yyy");
                 linearLayout.addView(newTextView);
                 Intent intent = new Intent(MainActivity.this,NotepadActivity.class);
-                startActivity(intent);
+
+
+                startActivityForResult(intent,1);
+
 
             }
+
         });
+
+
 
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(resultCode == 1){
+            if(resultCode == RESULT_OK){
+                String title = data.getStringExtra("title");
+                content.setText(title);
 
+            }
+            else{
+                content.setText("     ");
+
+            }
+        }
+    }
 }
