@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if(resultCode == 1){
             if(resultCode == RESULT_OK){
-                String title = data.getStringExtra("title");
+                String title = data.getStringExtra("Title");
                 content.setText(title);
 
             }
