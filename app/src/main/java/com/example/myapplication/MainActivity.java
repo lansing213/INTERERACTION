@@ -3,6 +3,7 @@ package com.example.myapplication;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.ActionMode;
@@ -16,6 +17,8 @@ public class MainActivity extends AppCompatActivity {
     private TextView content;
     private Button creator;
     private LinearLayout linearLayout;
+    public MainActivity mainActivity = (MainActivity) getApplicationContext();
+    private  Data activity;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,15 +27,16 @@ public class MainActivity extends AppCompatActivity {
         Button creator = findViewById(R.id.creator);
         LinearLayout linearLayout = findViewById(R.id.list_layout);
         content.setText("uighiu");
-
+        String data = activity.getData();
         content.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 content.setText("yyy");
                 String contentString = content.getText().toString();
+
                 Intent intent = new Intent(MainActivity.this,NotepadActivity.class);
                 intent.putExtra("titleName",contentString);
-                startActivityForResult(intent,1);
+                startActivity(intent);
 
             }
         });
@@ -45,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(MainActivity.this,NotepadActivity.class);
                 intent.putExtra("titleName",newTextView.getText().toString());
 
-                startActivityForResult(intent,1);
+                startActivity(intent);
 
 
             }
@@ -56,24 +60,24 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
+    //@Override
+    //protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        //super.onActivityResult(requestCode, resultCode, data);
 
-        if(resultCode == 1){
-            content.setText("iiiiiiiiiiiiiiiii");
-            if(resultCode == RESULT_OK){
-                String title = data.getStringExtra("Title");
+        //if(resultCode == 1){
+            //content.setText("iiiiiiiiiiiiiiiii");
+            //if(resultCode == Activity.RESULT_OK){
+                //String title = data.getStringExtra("Title");
 
-                content.setText(title);
+                //content.setText(title);
 
 
-            }
-            else{
-                content.setText("     ");
+            //}
+            //else{
+                //content.setText("     ");
 
-            }
-        }
+            //}
+        //}
 
-    }
+    //}
 }
