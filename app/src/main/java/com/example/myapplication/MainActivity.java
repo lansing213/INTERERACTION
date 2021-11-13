@@ -17,8 +17,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView content;
     private Button creator;
     private LinearLayout linearLayout;
-    public MainActivity mainActivity = (MainActivity) getApplicationContext();
-    private  Data activity;
+    private  Data MainActivity;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
         Button creator = findViewById(R.id.creator);
         LinearLayout linearLayout = findViewById(R.id.list_layout);
         content.setText("uighiu");
-        String data = activity.getData();
+        String data = MainActivity.getData();
         content.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

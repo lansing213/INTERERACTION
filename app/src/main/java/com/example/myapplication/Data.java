@@ -1,9 +1,11 @@
 package com.example.myapplication;
 
-public class Data{
+import android.app.Application;
+
+public class Data extends Application {
     private static String data;
 
-    public String getData(){
+    public static String getData(){
         return data;
     }
 
