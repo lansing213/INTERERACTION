@@ -2,21 +2,25 @@ package com.example.myapplication;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class NotepadActivity extends AppCompatActivity {
-    private  Data activity;
-
+    private String title;
+    private Button button;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_notepad);
+        Button button = findViewById(R.id.Back_button) ;
+
         getSupportActionBar().setTitle("Notepad");
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         Intent intent = getIntent();
         String contentString = intent.getStringExtra("titleName");
 
@@ -28,31 +32,49 @@ public class NotepadActivity extends AppCompatActivity {
 
 
         String currentContext = contentString;
-        String title;
 
-        title = "yyyoweurorsf";
-        editText.setText(title);
-        activity.setData(title);
-        //if(currentContext.matches("")){
-            //currentContext = "                         ";
-            //title = "";
-        //}
-        //else{
-            //if(currentContext.length() > 6){
-                //title = currentContext.substring(0,6) + "......";
-            //}
-            //else if(currentContext.length() == 6){
-                //title = currentContext.substring(0,6);}
-            //else{
-                //title = currentContext;
-            //}Intent BackIntent = new Intent();
-        //        intent.putExtra("Title",title);
-        //        setResult(RESULT_OK,BackIntent);
-        //        editText.setText("ppppppppppppp");
-        //}
+
+        editText.setText(contentString);
+        title = contentString;
+        if(contentString.matches("")){
+        currentContext = "                         ";
+        title = "";
+        }
+        else {
+
+            if (currentContext.length() > 6) {
+
+                title = currentContext.substring(0, 6) + "......";
+
+            }
+
+            else {
+                title = currentContext;
+            }
+        }
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent backIntent = new Intent();
+                backIntent.putExtra("Title",title);
+                setResult(1,backIntent);
+                finish();
+
+            }
+        });
+        //Intent backIntent = new Intent(this,MainActivity.class);
+        //backIntent.putExtra("Title",title);
+        //backIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        //startActivityIfNeeded(backIntent,0);
+
+
+
 
 
 
 
     }
+
+
+
 }

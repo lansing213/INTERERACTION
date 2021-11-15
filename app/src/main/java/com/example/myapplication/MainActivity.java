@@ -17,25 +17,25 @@ public class MainActivity extends AppCompatActivity {
     private TextView content;
     private Button creator;
     private LinearLayout linearLayout;
-    private  Data MainActivity;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        LinearLayout linearLayout = findViewById(R.id.list_layout);
         TextView content = findViewById(R.id.content_list);
         Button creator = findViewById(R.id.creator);
-        LinearLayout linearLayout = findViewById(R.id.list_layout);
+
         content.setText("uighiu");
-        String data = MainActivity.getData();
         content.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                content.setText("yyy");
+
                 String contentString = content.getText().toString();
 
                 Intent intent = new Intent(MainActivity.this,NotepadActivity.class);
                 intent.putExtra("titleName",contentString);
-                startActivity(intent);
+                startActivityForResult(intent,1);
 
             }
         });
@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(MainActivity.this,NotepadActivity.class);
                 intent.putExtra("titleName",newTextView.getText().toString());
 
-                startActivity(intent);
+                startActivityForResult(intent,1);
 
 
             }
@@ -59,24 +59,30 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    //@Override
-    //protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        //super.onActivityResult(requestCode, resultCode, data);
-
-        //if(resultCode == 1){
-            //content.setText("iiiiiiiiiiiiiiiii");
-            //if(resultCode == Activity.RESULT_OK){
-                //String title = data.getStringExtra("Title");
-
-                //content.setText(title);
 
 
-            //}
-            //else{
-                //content.setText("     ");
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        setContentView(R.layout.activity_main);
+        LinearLayout linearLayout = findViewById(R.id.list_layout);
+        TextView content = findViewById(R.id.content_list);
+        Button creator = findViewById(R.id.creator);
 
-            //}
-        //}
+        if(resultCode == 1){
+                String title = data.getStringExtra("Title");
+                TextView newTextView = new TextView(MainActivity.this);
+                newTextView.setText("ssssssss");
+                linearLayout.addView(newTextView);
+                content.setText("iiiiiiiiiiii");
+                content.setText(title);
 
-    //}
+
+
+        }
+        else{
+
+        }
+
+    }
 }

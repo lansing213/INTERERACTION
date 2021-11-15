@@ -4,7 +4,8 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/INTERERACTION/app/src/main/res/layout/activity_main.xml" value="0.4599236641221374" />
-        <entry key="..\:/INTERERACTION/app/src/main/res/layout/activity_notepad.xml" value="0.31620839363241676" />
+        <entry key="..\:/INTERERACTION/app/src/main/res/layout/activity_notepad.xml" value="0.2" />
+        <entry key="..\:/INTERERACTION/app/src/main/res/layout/content_notepad.xml" value="0.22760416666666666" />
       </map>
     </option>
   </component>
