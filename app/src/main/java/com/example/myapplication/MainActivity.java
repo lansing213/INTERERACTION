@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
         TextView content = findViewById(R.id.content_list);
         Button creator = findViewById(R.id.creator);
 
-        content.setText("uighiu");
+        content.setText("qqqqqqqqqq");
         content.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -43,10 +43,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 TextView newTextView = new TextView(MainActivity.this);
-                newTextView.setText("yyy");
+
                 linearLayout.addView(newTextView);
                 Intent intent = new Intent(MainActivity.this,NotepadActivity.class);
                 intent.putExtra("titleName",newTextView.getText().toString());
+
 
                 startActivityForResult(intent,1);
 
@@ -71,18 +72,41 @@ public class MainActivity extends AppCompatActivity {
 
         if(resultCode == 1){
                 String title = data.getStringExtra("Title");
-                TextView newTextView = new TextView(MainActivity.this);
-                newTextView.setText("ssssssss");
-                linearLayout.addView(newTextView);
-                content.setText("iiiiiiiiiiii");
                 content.setText(title);
-
-
-
         }
         else{
+            content.setText("Something wrong");
 
         }
+        content.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                String contentString = content.getText().toString();
+
+                Intent intent = new Intent(MainActivity.this,NotepadActivity.class);
+                intent.putExtra("titleName",contentString);
+                startActivityForResult(intent,1);
+
+            }
+        });
+        creator.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                TextView newTextView = new TextView(MainActivity.this);
+
+                linearLayout.addView(newTextView);
+                Intent intent = new Intent(MainActivity.this,NotepadActivity.class);
+                intent.putExtra("titleName",newTextView.getText().toString());
+
+
+                startActivityForResult(intent,1);
+
+
+            }
+
+        });
 
     }
+
 }

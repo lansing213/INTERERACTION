@@ -27,8 +27,8 @@ public class NotepadActivity extends AppCompatActivity {
 
 
         EditText editText = findViewById(R.id.content);
-        editText.setText(contentString);
 
+        title = "";
 
 
         String currentContext = contentString;
@@ -36,25 +36,23 @@ public class NotepadActivity extends AppCompatActivity {
 
         editText.setText(contentString);
         title = contentString;
-        if(contentString.matches("")){
-        currentContext = "                         ";
-        title = "";
-        }
-        else {
 
-            if (currentContext.length() > 6) {
-
-                title = currentContext.substring(0, 6) + "......";
-
-            }
-
-            else {
-                title = currentContext;
-            }
-        }
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                title = editText.getText().toString();
+
+                if(title.isEmpty() == true){
+                    title = "";
+                }
+                else {
+
+                    if (title.length() > 6) {
+
+                        title = title.substring(0, 6) + "......";
+
+                    }
+                }
                 Intent backIntent = new Intent();
                 backIntent.putExtra("Title",title);
                 setResult(1,backIntent);
