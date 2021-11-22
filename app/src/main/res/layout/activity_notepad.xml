@@ -7,8 +7,8 @@
 
     <EditText
         android:id="@+id/content"
-        android:layout_width="417dp"
-        android:layout_height="613dp"
+        android:layout_width="413dp"
+        android:layout_height="607dp"
         android:ems="10"
         android:gravity="start|top"
         android:inputType="textMultiLine"
@@ -18,15 +18,29 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="SpeakableTextPresentCheck" />
 
-    <Button
-        android:id="@+id/Back_button"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="118dp"
-        android:text="save and leave"
+        android:layout_height="119dp"
+        android:orientation="horizontal"
+        android:gravity="bottom"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/content"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toBottomOf="@+id/content">
+
+        <Button
+            android:id="@+id/Back_button"
+            android:layout_width="215dp"
+            android:layout_height="match_parent"
+            android:text="save and leave" />
+
+        <Button
+            android:id="@+id/mail_button"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text = "mail"
+            android:layout_weight="1"
+             />
+    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
