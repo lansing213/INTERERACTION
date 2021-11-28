@@ -18,12 +18,12 @@ public class NotepadActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notepad);
-        Button button = findViewById(R.id.Back_button) ;
-        Button mail = findViewById(R.id.mail_button);
+         button = findViewById(R.id.Back_button) ;
+         mail = findViewById(R.id.mail_button);
         getSupportActionBar().setTitle("Notepad");
         Intent intent = getIntent();
         String contentString = intent.getStringExtra("titleName");
-        Integer listNum = intent.getIntExtra("listNum",0);
+        int listNum = intent.getIntExtra("listNum",0);
 
 
 
