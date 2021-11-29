@@ -23,8 +23,8 @@ public class NotepadActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("Notepad");
         Intent intent = getIntent();
         String contentString = intent.getStringExtra("titleName");
-        int listNum = intent.getIntExtra("listNum",0);
-
+        int listNum = intent.getIntExtra("listNum",1);
+        System.out.println(contentString);
 
 
         EditText editText = findViewById(R.id.content);

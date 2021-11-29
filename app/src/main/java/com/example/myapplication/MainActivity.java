@@ -17,13 +17,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
     private Button creator;
     private LinearLayout linearLayout;
-    private ListView listView;
-    private ArrayList<String> arrayList;
+     ListView listView;
+     ArrayList arrayList;
+     //ShowListAdapter ListAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,12 +34,13 @@ public class MainActivity extends AppCompatActivity {
         listView = findViewById(R.id.content_list);
         creator = findViewById(R.id.creator);
         arrayList = new ArrayList<>();
-        ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1,arrayList);
-
-
-
         arrayList.add("qqqqqqqqqq");
+        ShowListAdapter arrayAdapter = new ShowListAdapter(this,R.layout.list_item,arrayList);
+
         listView.setAdapter(arrayAdapter);
+
+
+
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -81,16 +84,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         setContentView(R.layout.activity_main);
-
         Button creator = findViewById(R.id.creator);
         ListView listView =  findViewById(R.id.content_list);
-        arrayList = new ArrayList<>();
-        ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1,arrayList);
+
+        ShowListAdapter arrayAdapter = new ShowListAdapter(this,R.layout.list_item,arrayList);
         listView.setAdapter(arrayAdapter);
         if(resultCode == 1){
                 String title = data.getStringExtra("Title");
