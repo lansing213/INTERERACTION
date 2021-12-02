@@ -16,8 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ShowListAdapter extends ArrayAdapter<ShowList>{
-    List<ShowList>
-            arrayList;
+    List<ShowList> arrayList;
      Context context;
      int resource;
     public ShowListAdapter(Context context, int resource,      List<ShowList>
@@ -31,9 +30,12 @@ public class ShowListAdapter extends ArrayAdapter<ShowList>{
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+        View view   = convertView;
+        if(convertView == null){
+            LayoutInflater layoutInflater = LayoutInflater.from(context);
+             view = layoutInflater.inflate(resource,null,false);
+        }
 
-        LayoutInflater layoutInflater = LayoutInflater.from(context);
-        View view = layoutInflater.inflate(resource,null,false);
         TextView list_item_view = view.findViewById(R.id.list_item_text);
         Button list_item_button = view.findViewById(R.id.list_item_button);
 
@@ -42,14 +44,15 @@ public class ShowListAdapter extends ArrayAdapter<ShowList>{
 
         list_item_view.setText(showList.getTitle());
 
-        list_item_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                arrayList.remove(position);
-                notifyDataSetChanged();
+        //list_item_button.setOnClickListener(new View.OnClickListener() {
+            //@Override
+            //public void onClick(View view) {
+                //arrayList.remove(position);
+                //notifyDataSetChanged();
 
-            }
-        });
-        return super.getView(position, convertView, parent);
+            //}
+        //});
+        return view;
+        //return super.getView(position, convertView, parent);
     }
 }
