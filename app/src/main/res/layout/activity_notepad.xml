@@ -32,14 +32,17 @@
             android:id="@+id/Back_button"
             android:layout_width="215dp"
             android:layout_height="match_parent"
-            android:text="save and leave" />
+            android:text="save and leave"
+            android:backgroundTint="@color/pink"/>
 
         <Button
             android:id="@+id/mail_button"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text = "mail"
+            android:textColor="@color/white"
             android:layout_weight="1"
+            android:backgroundTint= "@color/shade_blue"
              />
     </LinearLayout>
 

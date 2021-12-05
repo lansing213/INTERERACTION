@@ -28,7 +28,7 @@ public class ShowListAdapter extends ArrayAdapter<ShowList>{
         this.resource = resource;
         this.arrayList = arrayList;
     }
-
+    // initialize the custom view of listview
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {

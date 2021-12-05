@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-
+    //Initialize global variables
     private Button creator;
     private LinearLayout linearLayout;
      ListView listView;
@@ -37,12 +37,13 @@ public class MainActivity extends AppCompatActivity {
 
 
         arrayList.add(new ShowList("ddddddddd"));
+
         ShowListAdapter arrayAdapter = new ShowListAdapter(this,R.layout.list_item,arrayList);
 
         listView.setAdapter(arrayAdapter);
 
 
-
+        //set up listview
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -66,15 +67,17 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-
+        //Button to create new listview item
         creator.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                arrayAdapter.add(new ShowList(" "));
-                arrayAdapter.notifyDataSetChanged();
+                //arrayAdapter.add(new ShowList(" "));
+                //arrayAdapter.notifyDataSetChanged();
                 //ShowList showList = arrayList.get(-1);
 
                 Intent intent = new Intent(MainActivity.this,NotepadActivity.class);
+                intent.putExtra("double", 2.1);
+
                 intent.putExtra("titleName","");
 
 
@@ -90,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-
+    //set up the new display of listview item and delete the blank
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -109,7 +112,7 @@ public class MainActivity extends AppCompatActivity {
                 int position = data.getIntExtra("ViewNumber",0);
                 if(title.isEmpty() == true){
                     arrayList.remove(position);
-
+                    arrayAdapter.notifyDataSetChanged();
 
 
 
@@ -123,14 +126,28 @@ public class MainActivity extends AppCompatActivity {
 
 
         }
+
+        else if(resultCode == 2){
+            String title = data.getStringExtra("Title");
+            ShowList showList = new ShowList(title);
+            arrayAdapter.add(showList);
+            arrayAdapter.notifyDataSetChanged();
+        }
         else{
             arrayList.add(new ShowList("Something is wrong"));
-
+            arrayAdapter.notifyDataSetChanged();
         }
+
+
+
+
+
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 ShowList showList = arrayList.get(i);
+
+
 
 
                 String contextString = showList.getTitle();
@@ -146,11 +163,13 @@ public class MainActivity extends AppCompatActivity {
         creator.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                arrayAdapter.add(new ShowList(" "));
-                arrayAdapter.notifyDataSetChanged();
+                //arrayAdapter.add(new ShowList(" "));
+                //arrayAdapter.notifyDataSetChanged();
                 //ShowList showList = arrayList.get(-1);
 
                 Intent intent = new Intent(MainActivity.this,NotepadActivity.class);
+                intent.putExtra("double", 2.1);
+
                 intent.putExtra("titleName","");
 
 

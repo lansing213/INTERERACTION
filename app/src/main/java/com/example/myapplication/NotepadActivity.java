@@ -24,7 +24,7 @@ public class NotepadActivity extends AppCompatActivity {
         Intent intent = getIntent();
         String contentString = intent.getStringExtra("titleName");
         int listNum = intent.getIntExtra("listNum",1);
-        System.out.println(contentString);
+        double code = intent.getDoubleExtra("double",0.1);
 
 
         EditText editText = findViewById(R.id.content);
@@ -38,9 +38,17 @@ public class NotepadActivity extends AppCompatActivity {
         editText.setText(contentString);
         title = contentString;
 
+
+        //save and leave
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+
+
+
+
+
                 title = editText.getText().toString();
 
                 if(title.isEmpty() == true){
@@ -60,8 +68,20 @@ public class NotepadActivity extends AppCompatActivity {
 
                     }
                 }
+
                 Intent backIntent = new Intent();
                 Bundle bundle = new Bundle();
+
+
+                if(code == 2.1){
+                    backIntent.putExtra("Title",title);
+                    setResult(2,backIntent);
+                    finish();
+
+
+
+
+                }
                 bundle.putString("Title",title);
                 bundle.putInt("ViewNumber",listNum);
 
@@ -73,6 +93,7 @@ public class NotepadActivity extends AppCompatActivity {
 
             }
         });
+        //send mail button
         mail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
