@@ -25,10 +25,14 @@ public class EmailActivity extends AppCompatActivity {
         title = findViewById(R.id.mail_title);
         sendButton = findViewById(R.id.send_button);
         getSupportActionBar().setTitle("Mail");
-        String cc = "jerichojing@hotmail.com";
+        String[] cc = {"jerichojing@hotmail.com"};
+
+        String[] to;
         Intent intent = getIntent();
         context.setText(intent.getStringExtra("mailContext"));
-
+        String receiver_address;
+        receiver_address = receiver.getText().toString();
+        to = new String[]{receiver_address};
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         AlertDialog alertDialog = new AlertDialog.Builder(EmailActivity.this).create();
         alertDialog.setTitle("Notification");
@@ -45,8 +49,9 @@ public class EmailActivity extends AppCompatActivity {
                 sendButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Intent email = new Intent(Intent.ACTION_VIEW);
-                        email.putExtra(Intent.EXTRA_EMAIL, receiver.getText().toString());
+                        Intent email = new Intent(Intent.ACTION_SEND);
+                        email.setType("message/rfc822");
+                        email.putExtra(Intent.EXTRA_EMAIL, to);
                         email.putExtra(Intent.EXTRA_CC, cc);
                         email.putExtra(Intent.EXTRA_TEXT, context.getText().toString());
                         email.putExtra(Intent.EXTRA_SUBJECT, title.getText().toString());

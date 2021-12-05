@@ -45,6 +45,12 @@ public class NotepadActivity extends AppCompatActivity {
 
                 if(title.isEmpty() == true){
                     title = "";
+
+
+
+
+
+
                 }
                 else {
 
@@ -59,7 +65,7 @@ public class NotepadActivity extends AppCompatActivity {
                 bundle.putString("Title",title);
                 bundle.putInt("ViewNumber",listNum);
 
-                ;
+
                 backIntent.putExtras(bundle);
 
                 setResult(1,backIntent);

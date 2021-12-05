@@ -24,16 +24,17 @@ public class MainActivity extends AppCompatActivity {
     private Button creator;
     private LinearLayout linearLayout;
      ListView listView;
-     List<ShowList> arrayList;
+     final List<ShowList> arrayList = new ArrayList<>();
      //ShowListAdapter ListAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         listView = findViewById(R.id.content_list);
         creator = findViewById(R.id.creator);
-        arrayList = new ArrayList<>();
+
 
         arrayList.add(new ShowList("ddddddddd"));
         ShowListAdapter arrayAdapter = new ShowListAdapter(this,R.layout.list_item,arrayList);
@@ -45,8 +46,10 @@ public class MainActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Object object = adapterView.getItemAtPosition(i);
-                String contextString = object.toString();
+                ShowList showList = arrayList.get(i);
+
+
+                String contextString = showList.getTitle();
 
                 Intent intent = new Intent(MainActivity.this,NotepadActivity.class);
                 Bundle bundle = new Bundle();
@@ -67,7 +70,10 @@ public class MainActivity extends AppCompatActivity {
         creator.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                arrayList.add(new ShowList(" "));
+                arrayAdapter.add(new ShowList(" "));
+                arrayAdapter.notifyDataSetChanged();
+                //ShowList showList = arrayList.get(-1);
+
                 Intent intent = new Intent(MainActivity.this,NotepadActivity.class);
                 intent.putExtra("titleName","");
 
@@ -92,14 +98,28 @@ public class MainActivity extends AppCompatActivity {
         Button creator = findViewById(R.id.creator);
         ListView listView =  findViewById(R.id.content_list);
 
-        ShowListAdapter arrayAdapter = new ShowListAdapter(this,R.id.list_item_text,arrayList);
+        ShowListAdapter arrayAdapter = new ShowListAdapter(this,R.layout.list_item,arrayList);
+
+
         listView.setAdapter(arrayAdapter);
         if(resultCode == 1){
+
+
                 String title = data.getStringExtra("Title");
                 int position = data.getIntExtra("ViewNumber",0);
-                arrayList.set(position,new ShowList(title));
-                arrayAdapter.notifyDataSetChanged();
+                if(title.isEmpty() == true){
+                    arrayList.remove(position);
 
+
+
+
+
+
+                }
+                else {
+                    arrayList.set(position, new ShowList(title));
+                    arrayAdapter.notifyDataSetChanged();
+                }
 
 
         }
@@ -110,8 +130,10 @@ public class MainActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Object object = adapterView.getItemAtPosition(i);
-                String contextString = object.toString();
+                ShowList showList = arrayList.get(i);
+
+
+                String contextString = showList.getTitle();
 
                 Intent intent = new Intent(MainActivity.this,NotepadActivity.class);
                 Bundle bundle = new Bundle();
@@ -124,11 +146,16 @@ public class MainActivity extends AppCompatActivity {
         creator.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                arrayList.add(new ShowList(" "));
+                arrayAdapter.add(new ShowList(" "));
+                arrayAdapter.notifyDataSetChanged();
+                //ShowList showList = arrayList.get(-1);
+
                 Intent intent = new Intent(MainActivity.this,NotepadActivity.class);
                 intent.putExtra("titleName","");
-                startActivityForResult(intent,1);
 
+
+
+                startActivityForResult(intent,1);
 
             }
 
