@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.ActionMode;
 import android.view.View;
@@ -24,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
     private Button creator;
     private LinearLayout linearLayout;
      ListView listView;
-     final List<ShowList> arrayList = new ArrayList<>();
+      List<ShowList> arrayList = new ArrayList<>();
      //ShowListAdapter ListAdapter;
 
     @Override
@@ -35,8 +36,13 @@ public class MainActivity extends AppCompatActivity {
         listView = findViewById(R.id.content_list);
         creator = findViewById(R.id.creator);
 
+        arrayList = com.example.myapplication.SharedPreferences.readListViewFromPref(this);
 
-        arrayList.add(new ShowList("ddddddddd"));
+        if(arrayList == null){
+            arrayList = new ArrayList<>();
+            arrayList.add(new ShowList("ddddddddd"));
+
+        }
 
         ShowListAdapter arrayAdapter = new ShowListAdapter(this,R.layout.list_item,arrayList);
 
@@ -113,7 +119,7 @@ public class MainActivity extends AppCompatActivity {
                 if(title.isEmpty() == true){
                     arrayList.remove(position);
                     arrayAdapter.notifyDataSetChanged();
-
+                    com.example.myapplication.SharedPreferences.writeListViewInPref(getApplicationContext(),arrayList);
 
 
 
@@ -122,6 +128,8 @@ public class MainActivity extends AppCompatActivity {
                 else {
                     arrayList.set(position, new ShowList(title));
                     arrayAdapter.notifyDataSetChanged();
+                    com.example.myapplication.SharedPreferences.writeListViewInPref(getApplicationContext(),arrayList);
+
                 }
 
 
@@ -132,10 +140,14 @@ public class MainActivity extends AppCompatActivity {
             ShowList showList = new ShowList(title);
             arrayAdapter.add(showList);
             arrayAdapter.notifyDataSetChanged();
+            com.example.myapplication.SharedPreferences.writeListViewInPref(getApplicationContext(),arrayList);
+
         }
         else{
             arrayList.add(new ShowList("Something is wrong"));
             arrayAdapter.notifyDataSetChanged();
+            com.example.myapplication.SharedPreferences.writeListViewInPref(getApplicationContext(),arrayList);
+
         }
 
 
